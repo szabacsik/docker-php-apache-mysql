@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php
+    hostname: php
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - backendNetwork
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: PASSWORD
+  db:
+    image: mysql/mysql-server:latest
+    container_name: db
+    hostname: db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - backendNetwork
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_ROOT_HOST: "%"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    hostname: phpmyadmin
+    ports:
+      - 8080:80
+    networks:
+      - backendNetwork
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+networks:
+  backendNetwork:
+    name: backend_network
