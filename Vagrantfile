@@ -20,4 +20,14 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-php.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-docker.sh", privileged: true
     config.vm.provision :shell, inline: "apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get clean; apt-get autoclean; apt-get autoremove -y"
+    config.vm.provision :shell, inline: "mkdir ~/artifact/containers -p; mkdir ~/artifact/app; mkdir ~/artifact/db", privileged: false
+    if File.exists?("./containers/docker-compose.yml")
+        config.vm.provision :file, source: "./containers/docker-compose.yml", destination: "/home/vagrant/artifact/containers/docker-compose.yml"
+    end
+    if File.exists?("./containers/Dockerfile")
+        config.vm.provision :file, source: "./containers/Dockerfile", destination: "/home/vagrant/artifact/containers/Dockerfile"
+    end
+    if File.exists?("./app/index.php")
+        config.vm.provision :file, source: "./app/index.php", destination: "/home/vagrant/artifact/app/index.php"
+    end
 end

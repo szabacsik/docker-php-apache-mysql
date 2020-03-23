@@ -2,14 +2,14 @@ version: '3.7'
 services:
   web:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     container_name: php
     hostname: php
     ports:
       - 80:80
     volumes:
-      - ./app:/var/www/html
+      - ~/artifact/app:/var/www/html
     networks:
       - backendNetwork
     depends_on:
@@ -26,7 +26,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./db:/var/lib/mysql
+      - ~/artifact/db:/var/lib/mysql
     networks:
       - backendNetwork
     restart: always
