@@ -2,7 +2,6 @@
 
 apt-get install -y apache2
 a2enmod rewrite
-apt-get install -y libapache2-mod-php
 
 grep -qxF '<Directory "/var/www/html">' /etc/apache2/sites-enabled/000-default.conf || echo '<Directory "/var/www/html">' >> /etc/apache2/sites-enabled/000-default.conf
 grep -qxF 'Allowoverride all' /etc/apache2/sites-enabled/000-default.conf || echo 'Allowoverride all' >> /etc/apache2/sites-enabled/000-default.conf
