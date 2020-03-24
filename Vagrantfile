@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-docker.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-composer.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-symfony.sh", privileged: true
+    config.vm.provision :shell, path: "./provisioning/install-apache.sh", privileged: true
     config.vm.provision :shell, inline: "apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get clean; apt-get autoclean; apt-get autoremove -y"
     config.vm.provision :shell, inline: "mkdir ~/artifact/containers -p; mkdir ~/artifact/app; mkdir ~/artifact/db", privileged: false
     if File.exists?("./containers/docker-compose.yml")
