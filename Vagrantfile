@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, inline: "ln -fs /usr/share/zoneinfo/Europe/Budapest /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata"
     config.vm.provision :shell, inline: "locale-gen en_US en_US.UTF-8 hu_HU hu_HU.UTF-8; export LANGUAGE=en_US.UTF-8; export LANG=en_US.UTF-8; export LC_ALL=en_US.UTF-8; update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8"
     config.vm.provision :shell, inline: "apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get clean; apt-get autoclean; apt-get autoremove -y"
-    config.vm.provision :shell, inline: "apt-get install -y zip unzip mc mysql-client", privileged: true
+    config.vm.provision :shell, inline: "apt-get install -y zip unzip mc mysql-client redis-tools", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-apache.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-php.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-docker.sh", privileged: true
