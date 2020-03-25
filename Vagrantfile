@@ -23,6 +23,9 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-docker.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-composer.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-symfony.sh", privileged: true
+    config.vm.provision :file, source: "./provisioning/99-xdebug.ini", destination: "/tmp/99-xdebug.ini"
+    config.vm.provision :file, source: "./provisioning/99-xdebug-cli.ini", destination: "/tmp/99-xdebug-cli.ini"
+    config.vm.provision :shell, path: "./provisioning/install-xdebug.sh", privileged: true
     config.vm.provision :shell, inline: "apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get clean; apt-get autoclean; apt-get autoremove -y"
     config.vm.provision :shell, inline: "mkdir ~/artifact/containers -p; mkdir ~/artifact/app; mkdir ~/artifact/db", privileged: false
     if File.exists?("./containers/docker-compose.yml")
