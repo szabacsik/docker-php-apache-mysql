@@ -18,3 +18,5 @@ if ! command -v docker-compose > /dev/null 2>&1; then
 else
     printf "\nDocker Compose is already installed.\n"
 fi
+
+[ -f /home/vagrant/get-docker.sh ] && rm /home/vagrant/get-docker.sh
