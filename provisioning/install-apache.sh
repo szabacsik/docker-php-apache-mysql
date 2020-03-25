@@ -20,6 +20,6 @@ fi
 
 chown www-data:www-data /var/www/html -R
 usermod -aG www-data vagrant
-chmod g+w /var/www/html
+chmod g+w /var/www/html -R
 
 service apache2 restart
