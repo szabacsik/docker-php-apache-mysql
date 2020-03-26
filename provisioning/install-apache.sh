@@ -19,7 +19,10 @@ if [ ! -e /var/www/html/index.php ]; then
 fi
 
 chown www-data:www-data /var/www/html -R
+# Add vagrant user to www-data group
 usermod -aG www-data vagrant
+# Add www-data user to vagrant group
+usermod -aG vagrant www-data
 chmod g+w /var/www/html -R
 
 service apache2 restart
