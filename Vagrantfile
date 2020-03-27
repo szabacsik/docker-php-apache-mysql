@@ -30,6 +30,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-phpunit.sh", privileged: true
     config.vm.provision :shell, inline: "apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get clean; apt-get autoclean; apt-get autoremove -y"
     config.vm.provision :shell, inline: "mkdir ~/artifact/containers -p; mkdir ~/artifact/app; mkdir ~/artifact/db", privileged: false
+    config.vm.provision :shell, inline: "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd", privileged: true
     if File.exists?("./containers/docker-compose.yml")
         config.vm.provision :file, source: "./containers/docker-compose.yml", destination: "/home/vagrant/artifact/containers/docker-compose.yml"
     end
