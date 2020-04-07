@@ -23,6 +23,8 @@ chown www-data:www-data /var/www/html -R
 usermod -aG www-data vagrant
 # Add www-data user to vagrant group
 usermod -aG vagrant www-data
-chmod g+w /var/www/html -R
+chmod o-rwx /var/www/html -R
+chmod ug+rwx /var/www/html -R
+chmod g+s /var/www/html
 
 service apache2 restart
