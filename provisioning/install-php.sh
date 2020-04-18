@@ -14,3 +14,6 @@ apt-get install -y --no-install-recommends php-igbinary php-redis
 
 #Install PostgreSQL module for PHP
 apt-get install -y php-pgsql
+
+#Install AMQP extension for PHP
+apt-get install -y php-amqp
