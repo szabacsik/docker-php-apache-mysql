@@ -11,3 +11,6 @@ apt-get install -y php-curl php-gd php-json php-mbstring php-zip php-mysql php-i
 
 #Install Redis extension
 apt-get install -y --no-install-recommends php-igbinary php-redis
+
+#Install PostgreSQL module for PHP
+apt-get install -y php-pgsql
