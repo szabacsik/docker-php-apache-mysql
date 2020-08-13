@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
         vb.memory = 4096
         vb.cpus = 4
         vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
+		vb.customize [ "modifyvm", :id, "--uart1", "0x3f8", "4" ]
+		vb.customize [ "modifyvm", :id, "--uartmode1", "tcpserver", "2323" ]
     end
     config.vm.synced_folder ".", "/vagrant", disabled: true
     config.vm.provision :shell, inline: "ln -fs /usr/share/zoneinfo/Europe/Budapest /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata"
