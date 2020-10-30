@@ -30,6 +30,8 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-symfony.sh", privileged: true
     config.vm.provision :file, source: "./provisioning/99-xdebug.ini", destination: "/tmp/99-xdebug.ini"
     config.vm.provision :file, source: "./provisioning/99-xdebug-cli.ini", destination: "/tmp/99-xdebug-cli.ini"
+    config.vm.provision :file, source: "./provisioning/99-php.ini", destination: "/tmp/99-php.ini"
+    config.vm.provision :file, source: "./provisioning/99-php-cli.ini", destination: "/tmp/99-php-cli.ini"
     config.vm.provision :shell, path: "./provisioning/install-xdebug.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-codeception.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-phpunit.sh", privileged: true

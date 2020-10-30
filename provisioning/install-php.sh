@@ -20,3 +20,8 @@ apt-get install -y php-amqp
 
 #Install SOAP extension for PHP
 apt-get install -y php-soap
+
+mv /tmp/99-php.ini /etc/php/7.4/apache2/conf.d/99-php.ini
+chown root:root /etc/php/7.4/apache2/conf.d/99-php.ini
+mv /tmp/99-php-cli.ini /etc/php/7.4/cli/conf.d/99-php-cli.ini
+chown root:root /etc/php/7.4/cli/conf.d/99-php-cli.ini
