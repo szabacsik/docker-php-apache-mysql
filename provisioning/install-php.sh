@@ -17,3 +17,6 @@ apt-get install -y php-pgsql
 
 #Install AMQP extension for PHP
 apt-get install -y php-amqp
+
+#Install SOAP extension for PHP
+apt-get install -y php-soap
