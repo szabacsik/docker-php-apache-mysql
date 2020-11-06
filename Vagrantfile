@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
 		vb.customize [ "modifyvm", :id, "--uartmode1", "tcpserver", "2323" ]
     end
     config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.provision :file, source: "./provisioning/99-xdebug.ini", destination: "/tmp/99-xdebug.ini"
+    config.vm.provision :file, source: "./provisioning/99-xdebug-cli.ini", destination: "/tmp/99-xdebug-cli.ini"
+    config.vm.provision :file, source: "./provisioning/99-php.ini", destination: "/tmp/99-php.ini"
+    config.vm.provision :file, source: "./provisioning/99-php-cli.ini", destination: "/tmp/99-php-cli.ini"
     config.vm.provision :shell, inline: "ln -fs /usr/share/zoneinfo/Europe/Budapest /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata"
     config.vm.provision :shell, inline: "locale-gen en_US en_US.UTF-8 hu_HU hu_HU.UTF-8; export LANGUAGE=en_US.UTF-8; export LANG=en_US.UTF-8; export LC_ALL=en_US.UTF-8; update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8"
     config.vm.provision :shell, inline: "mkdir /etc/gcrypt; echo all >> /etc/gcrypt/hwf.deny"
@@ -28,10 +32,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-composer.sh", privileged: true
     config.vm.provision :shell, inline: "echo 'export PATH=\"$PATH:$HOME/.config/composer/vendor/bin\"' >> ~/.bashrc", privileged: false
     config.vm.provision :shell, path: "./provisioning/install-symfony.sh", privileged: true
-    config.vm.provision :file, source: "./provisioning/99-xdebug.ini", destination: "/tmp/99-xdebug.ini"
-    config.vm.provision :file, source: "./provisioning/99-xdebug-cli.ini", destination: "/tmp/99-xdebug-cli.ini"
-    config.vm.provision :file, source: "./provisioning/99-php.ini", destination: "/tmp/99-php.ini"
-    config.vm.provision :file, source: "./provisioning/99-php-cli.ini", destination: "/tmp/99-php-cli.ini"
     config.vm.provision :shell, path: "./provisioning/install-xdebug.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-codeception.sh", privileged: true
     config.vm.provision :shell, path: "./provisioning/install-phpunit.sh", privileged: true
