@@ -26,7 +26,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/install-php.sh"
     config.vm.provision :shell, path: "./provisioning/install-docker.sh"
     config.vm.provision :shell, path: "./provisioning/install-composer.sh"
-    config.vm.provision :shell, inline: "echo 'export PATH=\"$PATH:$HOME/.config/composer/vendor/bin\"' >> ~/.bashrc", privileged: false
     config.vm.provision :shell, path: "./provisioning/install-symfony.sh"
     config.vm.provision :shell, path: "./provisioning/install-xdebug.sh"
     config.vm.provision :shell, path: "./provisioning/install-codeception.sh"
