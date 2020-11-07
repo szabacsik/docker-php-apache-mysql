@@ -14,3 +14,4 @@ mkdir /home/vagrant/artifact/containers -p
 mkdir /home/vagrant/artifact/db
 chown vagrant:vagrant /home/vagrant/artifact -R
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+/etc/init.d/ssh restart
