@@ -9,7 +9,7 @@ services:
     ports:
       - 8000:80
     volumes:
-      - ~/artifact/app:/var/www/html
+      - /var/www/html/demo:/var/www/html
     networks:
       - backendNetwork
     depends_on:
