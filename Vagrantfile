@@ -31,16 +31,8 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/shell/install-codeception.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-phpunit.sh"
     config.vm.provision :shell, path: "./provisioning/shell/finalize.sh"
+    config.vm.provision :file, source: "./containers/.", destination: "/home/vagrant/artifact/containers"
     config.vm.provision "environment-variables", type: "shell", path: "./provisioning/shell/environment-variables.sh"
     config.vm.provision "projects-copy", type: "file", run: "always", source: "./projects", destination: "/tmp/projects"
     config.vm.provision "projects-start", type: "shell", run: "always", after: "projects-copy", path: "./provisioning/shell/projects-start.sh"
-    if File.exists?("./containers/docker-compose.yml")
-        config.vm.provision :file, source: "./containers/docker-compose.yml", destination: "/home/vagrant/artifact/containers/docker-compose.yml"
-    end
-    if File.exists?("./containers/Dockerfile")
-        config.vm.provision :file, source: "./containers/Dockerfile", destination: "/home/vagrant/artifact/containers/Dockerfile"
-    end
-    if File.exists?("./app/index.php")
-        config.vm.provision :file, source: "./app/index.php", destination: "/home/vagrant/artifact/app/index.php"
-    end
 end
