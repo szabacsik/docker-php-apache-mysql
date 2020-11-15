@@ -1,19 +1,58 @@
-# docker-php-apache-mysql
-Separate containers for PHP, Apache, Mysql and phpMyAdmin with Docker Compose and Vagrant
+## Dependencies
 
+* Oracle VM **VirtualBox** *open-source hosted hypervisor*.  
+<https://www.virtualbox.org/>
+
+* **Vagrant** by HashiCorp *tool for building complete development environments*.  
+<https://www.vagrantup.com/>
+
+It is possible to install both with **Chocolatey** Package Manager for Windows.  
+<https://chocolatey.org/docs/installation>
+
+```shell
+choco install virtualbox
+choco install vagrant
 ```
+
+## Spin up **Webstack** virtual machine
+
+```shell
+mkdir project
+cd project
+git clone https://github.com/szabacsik/webstack
+cd webstack
 vagrant up
+```
+
+## Start **docker** containers
+* PHP
+* MySQL
+* phpMyAdmin
+* Redis
+* MailCatcher
+
+```shell
 vagrant ssh
 cd ~/artifact/containers/
 docker-compose up -d
-docker-compose stop
 ```
 
-phpinfo
+## Access web interfaces
+
+* Projects  
 <http://192.168.100.100/>
 
-phpmyadmin
+* phpinfo  
+<http://192.168.100.100/info/>
+
+* demo  
+<http://192.168.100.100/demo/>
+
+* PHP container (demo)  
+<http://192.168.100.100:8000/>
+
+* phpMyAdmin container  
 <http://192.168.100.100:8080/>
 
-# SSH private_key 
-If you type `vagrant ssh-config` it'll show you the location of the vagrant's ssh key. If you remove the key, Vagrant will automatically generate a new one when you run `vagrant up`.  
+* MailCatcher container  
+<http://192.168.100.100:1080/>
