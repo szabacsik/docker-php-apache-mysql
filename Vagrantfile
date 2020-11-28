@@ -33,6 +33,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/shell/finalize.sh"
     config.vm.provision :file, source: "./containers/.", destination: "/home/vagrant/artifact/containers"
     config.vm.provision "environment-variables", type: "shell", path: "./provisioning/shell/environment-variables.sh"
-    config.vm.provision "projects-copy", type: "file", run: "always", source: "./projects", destination: "/tmp/projects"
-    config.vm.provision "projects-start", type: "shell", run: "always", after: "projects-copy", path: "./provisioning/shell/projects-start.sh"
+    config.vm.provision "projects-copy", before: "projects-deploy", type: "file", run: "always", source: "./projects", destination: "/tmp/projects"
+    config.vm.provision "projects-deploy", after: "projects-copy", type: "shell", run: "always", path: "./provisioning/shell/projects-deploy.sh"
 end
