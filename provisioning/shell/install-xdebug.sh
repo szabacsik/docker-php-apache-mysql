@@ -8,7 +8,7 @@ chown root:root /etc/php/8.0/cli/conf.d/99-xdebug-cli.ini
 cd /tmp
 git clone git://github.com/xdebug/xdebug.git
 cd /tmp/xdebug
-git checkout 2.9.8
+git checkout 3.0.2
 phpize
 ./configure --enable-xdebug
 make
