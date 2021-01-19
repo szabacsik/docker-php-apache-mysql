@@ -5,7 +5,6 @@ rsync /tmp/projects/ /var/www/html \
   --recursive \
   --checksum \
   --ignore-times \
-  --delete \
   --prune-empty-dirs \
   --verbose \
   --human-readable \
