@@ -10,8 +10,7 @@ apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get install -y zip unzip mc mysql-client redis-tools
-mkdir /home/vagrant/artifact/containers -p
-mkdir /home/vagrant/artifact/db
-chown vagrant:vagrant /home/vagrant/artifact -R
+mkdir /srv/infra/db -p
+chown vagrant:vagrant /srv/infra -R
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 /etc/init.d/ssh restart

@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/shell/install-codeception.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-phpunit.sh"
     config.vm.provision :shell, path: "./provisioning/shell/finalize.sh"
-    config.vm.provision :file, source: "./containers/.", destination: "/home/vagrant/artifact/containers"
+    config.vm.provision :file, source: "./infra/.", destination: "/srv/infra"
     config.vm.provision "environment-variables", type: "shell", path: "./provisioning/shell/environment-variables.sh"
     config.vm.provision "copy", before: "deploy", type: "file", run: "always", source: "./www", destination: "/tmp/www"
     config.vm.provision "deploy", after: "copy", type: "shell", run: "always", path: "./provisioning/shell/www-deploy.sh"

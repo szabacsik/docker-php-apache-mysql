@@ -33,7 +33,7 @@ vagrant up
 
 ```shell
 vagrant ssh
-cd ~/artifact/containers/
+cd /srv/infra
 docker-compose up -d
 ```
 
