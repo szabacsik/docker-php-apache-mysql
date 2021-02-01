@@ -9,7 +9,7 @@ services:
     ports:
       - 8000:80
     volumes:
-      - /var/www/html/demo:/var/www/html
+      - /srv/www:/var/www/html
     networks:
       - backendNetwork
     depends_on:
