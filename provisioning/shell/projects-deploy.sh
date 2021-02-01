@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 rm -f /etc/apache2/sites-enabled/000-default.conf
 mv -f /tmp/projects/apache.conf /etc/apache2/sites-enabled/apache.conf
-rsync /tmp/projects/ /var/www/html \
+rsync /tmp/projects/ /srv/www \
   --recursive \
   --checksum \
   --ignore-times \
