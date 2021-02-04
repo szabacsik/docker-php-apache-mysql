@@ -1,13 +1,13 @@
 version: '3.8'
 services:
-  php:
+  php7412:
     build:
-      context: .
+      context: ./php7412
       dockerfile: Dockerfile
-    container_name: php
-    hostname: php
+    container_name: php7412
+    hostname: php7412
     ports:
-      - 8000:80
+      - 7412:80
     volumes:
       - /srv/www:/var/www/html
     networks:
