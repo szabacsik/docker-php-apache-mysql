@@ -56,3 +56,32 @@ docker-compose up -d
 
 * MailCatcher container  
 <http://192.168.100.100:1080/>
+
+
+## Debugging PHP Containers with XDebug
+
+Start **DBGp Proxy Tool** on **Webstack** VM. It listens for container's debugger connections on the **port 9001**, and listens for developers' IDE on the **port 9000**.
+
+```shell
+/opt/dbgpProxy -i 0.0.0.0:9000 -s 0.0.0.0:9001
+```
+
+- **-i**: the host and the port to listen on for IDE (client) connections
+- **-s**: the host and the port to listen on for debugger engine (server) connections
+
+### Configure access to the DBGp proxy server from PhpStorm
+
+In the main menu, select **Tools** | **DBGp Proxy** | **Configuration**.
+
+In the **DBGP Proxy** dialog that opens, specify the  
+IDE key: PHPSTORM  
+host: 192.168.100.100  
+port: 9000  
+of the Xdebug proxy server.
+
+In the main menu, click **Tools** | **DBGp Proxy** | **Register IDE**.
+
+click Start Listening for PHP Debug Connections
+
+<https://www.jetbrains.com/help/phpstorm/multiuser-debugging-via-xdebug-proxies.html>
+<https://xdebug.org/docs/dbgpProxy>

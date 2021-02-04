@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "./provisioning/shell/install-composer.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-symfony.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-xdebug.sh"
+    config.vm.provision :shell, path: "./provisioning/shell/install-xdebug-dbgp-proxy-tool.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-codeception.sh"
     config.vm.provision :shell, path: "./provisioning/shell/install-phpunit.sh"
     config.vm.provision :shell, path: "./provisioning/shell/finalize.sh"
