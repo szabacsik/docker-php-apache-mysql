@@ -85,3 +85,27 @@ click Start Listening for PHP Debug Connections
 
 <https://www.jetbrains.com/help/phpstorm/multiuser-debugging-via-xdebug-proxies.html>
 <https://xdebug.org/docs/dbgpProxy>
+
+### Debugging a **PHP CLI** script from the command line of a container
+
+Start [Screen](https://www.gnu.org/software/screen/ "Screen") session
+```shell
+screen
+```
+
+Start **DBGp Proxy Tool** and start listening for debug connections in **PHPStorm**.  
+
+Press **CTRL+a** than **c** to create a new **screen shell** window.  
+
+Start **SSH Server** and log into the container. The root password is **PASSWORD**.  
+```
+docker exec -it -u0 php7412 /etc/init.d/ssh start
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' php7412
+ssh root@172.18.0.4
+```
+
+Go to your app and run a cli script
+```shell
+cd /var/www/html/demo
+php index.php
+```
