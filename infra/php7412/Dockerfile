@@ -5,10 +5,13 @@ RUN pecl install -f xdebug && \
     docker-php-ext-enable xdebug && \
     echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.log=/var/www/xdebug/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    echo "xdebug.log=/var/log/apache2/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.client_port=9001" >> /usr/local/etc/php/conf.d/xdebug.ini && \
     echo "xdebug.client_host=172.18.0.1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-    echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini
+    echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+    touch /var/log/apache2/xdebug.log && \
+    chown www-data:www-data /var/log/apache2/xdebug.log && \
+    chmod 664 /var/log/apache2/xdebug.log
 RUN apt-get update && \
     apt-get -y install openssh-server && \
     sed -i "/PermitRootLogin/c\PermitRootLogin yes" /etc/ssh/sshd_config
