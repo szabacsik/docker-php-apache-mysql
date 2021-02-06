@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 apt-get install -y apache2
 a2enmod rewrite
+mkdir /srv/www -p
 chown www-data:www-data /srv/www -R
 usermod -aG www-data vagrant
 usermod -aG vagrant www-data
