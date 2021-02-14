@@ -30,6 +30,7 @@ vagrant up
 * phpMyAdmin
 * Redis
 * MailCatcher
+* Portainer Container Management [Documentation](https://documentation.portainer.io/ "Portainer Documentation"), [Deployment](https://portainer.readthedocs.io/en/stable/deployment.html "Portainer Deployment")
 
 ```shell
 vagrant ssh
@@ -48,8 +49,8 @@ docker-compose up -d
 * demo  
 <http://192.168.100.100/demo/>
 
-* PHP container (demo)  
-<http://192.168.100.100:8000/>
+* PHP 7.4.12 container  
+<http://192.168.100.100:7412/>
 
 * phpMyAdmin container  
 <http://192.168.100.100:8080/>
@@ -57,6 +58,8 @@ docker-compose up -d
 * MailCatcher container  
 <http://192.168.100.100:1080/>
 
+* Portainer Container Management
+<http://192.168.100.100:9000/>
 
 ## Debugging PHP Containers with XDebug
 
