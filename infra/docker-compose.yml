@@ -11,12 +11,13 @@ services:
     volumes:
       - /srv/www:/var/www/html
     networks:
-      - backendNetwork
+        backendNetwork:
+          ipv4_address: 10.5.0.6
     depends_on:
-      - db
+      - db5548
     environment:
-      MYSQL_HOST: db
-      MYSQL_PORT: 3306
+      MYSQL_HOST: db5548
+      MYSQL_PORT: 5548
       MYSQL_USER: root
       MYSQL_PASSWORD: PASSWORD
   php7412:
@@ -30,7 +31,8 @@ services:
     volumes:
       - /srv/www:/var/www/html
     networks:
-      - backendNetwork
+      backendNetwork:
+        ipv4_address: 10.5.0.7
     depends_on:
       - db
     environment:
@@ -47,7 +49,23 @@ services:
     volumes:
       - /srv/infra/db:/var/lib/mysql
     networks:
-      - backendNetwork
+      backendNetwork:
+        ipv4_address: 10.5.0.8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_ROOT_HOST: "%"
+  db5548:
+    image: mysql/mysql-server:5.5.48
+    container_name: db5548
+    hostname: db5548
+    ports:
+      - 127.0.0.1:5548:3306
+    volumes:
+      - /srv/infra/db5548:/var/lib/mysql
+    networks:
+      backendNetwork:
+        ipv4_address: 10.5.0.9
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PASSWORD
@@ -59,7 +77,8 @@ services:
     ports:
       - 8080:80
     networks:
-      - backendNetwork
+      backendNetwork:
+        ipv4_address: 10.5.0.10
     depends_on:
       - db
     environment:
@@ -70,7 +89,8 @@ services:
     ports:
       - 127.0.0.1:6379:6379
     networks:
-      - backendNetwork
+      backendNetwork:
+        ipv4_address: 10.5.0.11
   mailcatcher:
     restart: always
     image: schickling/mailcatcher
@@ -94,3 +114,8 @@ volumes:
 networks:
   backendNetwork:
     name: backend_network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
