@@ -1,5 +1,24 @@
 version: '3.8'
 services:
+  php560:
+    build:
+      context: ./php560
+      dockerfile: Dockerfile
+    container_name: php560
+    hostname: php560
+    ports:
+      - 5600:80
+    volumes:
+      - /srv/www:/var/www/html
+    networks:
+      - backendNetwork
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: PASSWORD
   php7412:
     build:
       context: ./php7412
@@ -65,7 +84,7 @@ services:
     command: -H unix:///var/run/docker.sock
     restart: always
     ports:
-      - 9000:9000
+      - 9999:9000
       - 8000:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
