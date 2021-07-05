@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/focal64"
     config.vm.box_check_update = true
     config.vm.provider "virtualbox"
+    config.vm.boot_timeout = 600
     config.vm.network "private_network", ip: "192.168.100.100"
     config.vm.network "forwarded_port", guest: 80, host: 80, disabled: true
     config.vm.network "forwarded_port", guest: 1080, host: 1080, disabled: true
