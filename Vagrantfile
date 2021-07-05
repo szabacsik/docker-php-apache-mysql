@@ -3,10 +3,10 @@ Vagrant.configure("2") do |config|
     config.vm.box_check_update = true
     config.vm.provider "virtualbox"
     config.vm.network "private_network", ip: "192.168.100.100"
-    config.vm.network "forwarded_port", guest: 80, host: 80, disabled: false
-    config.vm.network "forwarded_port", guest: 1080, host: 1080, disabled: false
-    config.vm.network "forwarded_port", guest: 1025, host: 1025, disabled: false
-    config.vm.network "forwarded_port", guest: 22, host: 2222, disabled: false
+    config.vm.network "forwarded_port", guest: 80, host: 80, disabled: true
+    config.vm.network "forwarded_port", guest: 1080, host: 1080, disabled: true
+    config.vm.network "forwarded_port", guest: 1025, host: 1025, disabled: true
+    config.vm.network "forwarded_port", guest: 22, host: 2222, disabled: true
     config.vm.hostname = "webstack"
     config.vm.define "webstack"
     config.vm.provider :virtualbox do |vb|
